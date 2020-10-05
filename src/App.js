@@ -29,6 +29,22 @@ const App = () => {
   //change page
   const paginate=(number)=>setCurrentPage(number)
   
+  //handle Click
+  const handleClick=(type)=>{
+if(type==="previous"){
+  if(currentPage===1){
+    setCurrentPage(1)
+  }else{
+    setCurrentPage(currentPage-1)
+  }
+}else if(type==="next"){
+if(Math.ceil(posts.length/postsPerPage)===currentPage){
+  setCurrentPage(currentPage)
+}else{
+  setCurrentPage(currentPage+1)
+}
+}
+  }
   return (
     <div className="container mt-5">
       <h1 className="text-primary mb-3">My Blog</h1>
@@ -37,6 +53,8 @@ const App = () => {
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
         paginate={paginate}
+        handleClick={handleClick}
+        currentPage={currentPage}
       />
     </div>
   );
